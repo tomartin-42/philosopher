@@ -13,20 +13,11 @@ void	check_live(t_philo *philo)
 		aux_p = philo->table->philo[i];
 		if (ac_t > aux_p.t_lastacc && ac_t - aux_p.t_lastacc > aux_p.table->t_death)
 		{
-		/*	printf("p_name %d\n", aux_p.ph_name);
-			printf("acc._t %lu\n", ac_t);
-			printf("l_eat  %lu\n", aux_p.t_lastacc);
-			printf("t_death %lu\n", aux_p.table->t_death);
-			printf("_____________________\n"); */
 			if(aux_p.table->banquet)
 			{
 				aux_p.table->banquet = false;
-				printf("[%8lu] %d died\n", ac_t, philo->ph_name);
-			}
-			//paint ("died 💀💀💀", &aux_p);
-	//		exit(0);
-		//	printf("[%8lu] %d died\n", ac_t, philo->table->philo[i].ph_name);
-			rutine_detach(&aux_p);
+					printf("[%8llu] %d died 💀 ☠️  👻\n", ac_t, philo->ph_name);
+				}
 		}
 		i++;
 	}
@@ -37,9 +28,12 @@ void	paint(char *str, t_philo *philo)
 	uint64_t	ac_t;
 
 	ac_t = get_t(philo->table->str_time);
-//	if(philo->table->banquet == true)
-//	{
-		if (philo->table->banquet)
-			printf("[%8lu] %d %s\n", ac_t, philo->ph_name, str);
-//	}
+	if (philo->table->banquet)
+		printf("[%8llu] %d %s\n", ac_t, philo->ph_name, str);
+}
+
+void	check_n_eats(t_philo *philo)
+{
+	if (philo->n_eat == 0)
+		philo->table->banquet = false;
 }
