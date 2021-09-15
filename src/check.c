@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 16:09:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/15 11:38:06 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/15 12:46:09 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,23 @@ static int	check_n_max_philo(char **argv)
 {
 	int	check;
 	int	philos;
+	int	td;
+	int	te;
+	int	ne;
 
 	check = 0;
 	philos = ft_atoi(argv[1]);
+	td = ft_atoi(argv[2]);
+	te = ft_atoi(argv[3]);
+	ne = ft_atoi(argv[4]);
 	if (philos > 200)
 	{
 		printf("Error: too much philos\n");
+		check = 1;
+	}
+	if (td > INT_MAX || te > INT_MAX || ne > INT_MAX)
+	{
+		printf("Error: too much time\n");
 		check = 1;
 	}
 	return (check);
