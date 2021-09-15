@@ -83,6 +83,6 @@ void		pause_t(uint64_t pause, t_philo *philo);
 void		paint(char *str, t_philo *philo);
 void		check_live(t_philo *philo);
 
-void		check_n_eats(t_philo *philo);
+int			check_n_eats(t_philo *philo);
 
 #endif

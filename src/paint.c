@@ -29,7 +29,7 @@ void	check_live(t_philo *philo)
 			if (aux_p.table->banquet)
 			{
 				aux_p.table->banquet = false;
-				printf("[%8llu] %d died 💀 ☠️  👻\n", ac_t, philo->ph_name);
+				printf("[%8lu] %d died 💀 ☠️  👻\n", ac_t, philo->ph_name);
 			}
 		}
 		i++;
@@ -44,13 +44,13 @@ void	paint(char *str, t_philo *philo)
 	if (philo->table->banquet)
 	{
 		pthread_mutex_lock(&philo->mutex2);
-		printf("[%8llu] %d %s\n", ac_t, philo->ph_name, str);
+		//if(check_n_eats(philo))
+			printf("[%8lu] %d %s\n", ac_t, philo->ph_name, str);
 		pthread_mutex_unlock(&philo->mutex2);
 	}
 }
 
-void	check_n_eats(t_philo *philo)
+int	check_n_eats(t_philo *philo)
 {
-	if (philo->n_eat == 0)
-		philo->table->banquet = false;
+	return (philo->n_eat);
 }

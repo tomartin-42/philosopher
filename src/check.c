@@ -41,23 +41,12 @@ static int	check_n_max_philo(char **argv)
 {
 	int	check;
 	int	philos;
-	int	td;
-	int	te;
-	int	ne;
 
 	check = 0;
 	philos = ft_atoi(argv[1]);
-	td = ft_atoi(argv[2]);
-	te = ft_atoi(argv[3]);
-	ne = ft_atoi(argv[4]);
 	if (philos > 200)
 	{
 		printf("Error: too much philos\n");
-		check = 1;
-	}
-	if (td > INT_MAX || te > INT_MAX || ne > INT_MAX)
-	{
-		printf("Error: too much time\n");
 		check = 1;
 	}
 	return (check);
