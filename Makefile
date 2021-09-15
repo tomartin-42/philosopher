@@ -6,7 +6,7 @@
 #    By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/04 19:11:19 by tomartin          #+#    #+#              #
-#    Updated: 2021/09/06 11:28:05 by tomartin         ###   ########.fr        #
+#    Updated: 2021/09/15 09:39:30 by tomartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME = philo
 
 # Compiling flags
-FLAGS = -Wall -Wextra -Werror -g -O
+FLAGS = -Wall -Wextra -Werror -g -Ofast
 
 # Folders
 SRC_DIR = ./src/

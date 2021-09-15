@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 11:27:32 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/15 08:05:37 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/15 09:45:33 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@ void init_banquet (t_table *table)
 	{
 		pthread_create(&table->philo[i].thread, NULL, rutine, &table->philo[i]);
 		i += 2;
-		usleep(200 - table->n_philos);
+		usleep(210 - table->n_philos);
 	}
 	i = 1;
 	while (i < table->n_philos)
 	{
 		pthread_create(&table->philo[i].thread, NULL, rutine, &table->philo[i]);
 		i += 2;
+		usleep(210 - table->n_philos);
 	}
 	i = 0;
 	while (i < table->n_philos)
@@ -87,7 +88,7 @@ void	eat_rutine(t_philo *philo)
 void	sleep_rutine(t_philo *philo)
 {
 	philo->lass_acc = 'S';
-	paint("is sleeping 🌙 🛏 🛌", philo);
+	paint("is sleeping 🌙 🛏  🛌", philo);
 	pause_t(philo->table->t_dream, philo);
 }
 
