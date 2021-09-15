@@ -6,13 +6,13 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 11:10:09 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/14 11:57:18 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/15 11:18:25 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	add_eat_number (t_table *table, int argc, char **argv)
+static void	add_eat_number(t_table *table, int argc, char **argv)
 {
 	int	i;
 
@@ -26,45 +26,50 @@ static void	add_eat_number (t_table *table, int argc, char **argv)
 		}
 	}
 	else
-			table->philo[i].n_eat = -1;
+		table->philo[i].n_eat = -1;
 }
 
-static void init_forks(int *forks, int n_philos)
+static void	init_forks(int *forks, int n_philos)
 {
 	int	i;
 
 	i = 0;
-	while (i <  n_philos)
+	while (i < n_philos)
 	{
 		forks[i] = FREE;
 		i++;
 	}
 }
 
-void init_philo(t_table *table)
+static void	init_philo2(t_table *table, int i)
+{
+	table->philo[i].table = table;
+	table->philo[i].n_filo = i;
+	table->philo[i].ph_name = i + 1;
+	table->philo[i].live = LIVE;
+}
+
+void	init_philo(t_table *table)
 {
 	int	i;
 
 	i = 0;
 	while (i < table->n_philos)
 	{
-		table->philo[i].table = table;
-		table->philo[i].n_filo = i;
-		table->philo[i].ph_name = i + 1;
-		table->philo[i].live = LIVE;
+		init_philo2(table, i);
 		if (i == table->n_philos - 1)
 		{
-			table->philo[i].fork[0] = i; 
-			table->philo[i].fork[1] = 0; 
-			table->philo[i].p_mutex = &table->philo[0].mutex; 
+			table->philo[i].fork[0] = i;
+			table->philo[i].fork[1] = 0;
+			table->philo[i].p_mutex = &table->philo[0].mutex;
 			pthread_mutex_init(&table->philo[i].mutex, NULL);
 			pthread_mutex_init(&table->philo[i].mutex2, NULL);
 		}
 		else
 		{
-			table->philo[i].fork[0] = i; 
-			table->philo[i].fork[1] = i + 1; 
-			table->philo[i].p_mutex = &table->philo[i + 1].mutex; 
+			table->philo[i].fork[0] = i;
+			table->philo[i].fork[1] = i + 1;
+			table->philo[i].p_mutex = &table->philo[i + 1].mutex;
 			pthread_mutex_init(&table->philo[i].mutex, NULL);
 		}
 		i++;

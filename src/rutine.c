@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/10 11:27:32 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/15 09:45:33 by tomartin         ###   ########.fr       */
+/*   Created: 2021/09/15 11:00:32 by tomartin          #+#    #+#             */
+/*   Updated: 2021/09/15 11:00:35 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //Function to star one thread per philo. Initialize the start time 
 //to use to reference to check get_t function.
-void init_banquet (t_table *table)
+void	init_banquet(t_table *table)
 {
 	int	i;
 
@@ -22,24 +22,9 @@ void init_banquet (t_table *table)
 	table->banquet = true;
 	table->str_time = start_time();
 	while (i < table->n_philos)
-	{
-		table->philo[i].t_lastacc = 0;
-		i += 1;
-	}
-	i = 0;
-	while (i < table->n_philos)
-	{
-		pthread_create(&table->philo[i].thread, NULL, rutine, &table->philo[i]);
-		i += 2;
-		usleep(210 - table->n_philos);
-	}
-	i = 1;
-	while (i < table->n_philos)
-	{
-		pthread_create(&table->philo[i].thread, NULL, rutine, &table->philo[i]);
-		i += 2;
-		usleep(210 - table->n_philos);
-	}
+		table->philo[i++].t_lastacc = 0;
+	start_even(table);
+	start_odd(table);
 	i = 0;
 	while (i < table->n_philos)
 	{
@@ -52,15 +37,14 @@ void init_banquet (t_table *table)
 // t_lastacc to check the time in to eats.
 void	*(rutine(void *arg))
 {
-	t_philo *aux_p;
+	t_philo	*aux_p;
 
 	aux_p = arg;
 	while (aux_p->table->banquet)
 	{
-			eat_rutine(aux_p);
-			sleep_rutine(aux_p);
-			think_rutine(aux_p);
-
+		eat_rutine(aux_p);
+		sleep_rutine(aux_p);
+		think_rutine(aux_p);
 	}
 	return (0);
 }
@@ -74,7 +58,7 @@ void	eat_rutine(t_philo *philo)
 	pthread_mutex_lock(philo->p_mutex);
 	get_fork2(philo);
 	philo->lass_acc = 'E';
-	philo->t_lastacc = get_t(philo->table->str_time); //get time to start eat
+	philo->t_lastacc = get_t(philo->table->str_time);
 	philo->n_eat -= 1;
 	paint("is eating 🍗 🍖 🦴", philo);
 	check_n_eats(philo);

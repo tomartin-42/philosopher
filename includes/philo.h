@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 15:44:17 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/15 08:37:05 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/15 11:19:58 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void		init_banquet(t_table *table);
 void		*rutine(void *arg);
 void		eat_rutine(t_philo *philo);
 void		sleep_rutine(t_philo *philo);
+void		start_odd(t_table *table);
+void		start_even(t_table *table);
 void		think_rutine(t_philo *philo);
 void		get_fork1(t_philo *philo);
 void		get_fork2(t_philo *philo);
@@ -77,7 +79,7 @@ uint64_t	start_time(void);
 uint64_t	get_t(uint64_t start);
 void		pause_t(uint64_t pause, t_philo *philo);
 
-void		print_tb(t_table *table);
+//void		print_tb(t_table *table);
 void		paint(char *str, t_philo *philo);
 void		check_live(t_philo *philo);
 

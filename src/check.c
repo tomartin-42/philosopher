@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 16:09:36 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/05 19:24:56 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/15 11:38:06 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,26 @@ static int	check_characters(char **argv)
 	return (check);
 }
 
+static int	check_n_max_philo(char **argv)
+{
+	int	check;
+	int	philos;
+
+	check = 0;
+	philos = ft_atoi(argv[1]);
+	if (philos > 200)
+	{
+		printf("Error: too much philos\n");
+		check = 1;
+	}
+	return (check);
+}
+
 int	check(int argc, char **argv)
 {
 	int	check;
 	int	check2;
+	int	check3;
 
 	check = 0;
 	if (argc > 6 || argc < 5)
@@ -49,5 +65,6 @@ int	check(int argc, char **argv)
 		check = 1;
 	}
 	check2 = check_characters(argv);
-	return (check + check2);
+	check3 = check_n_max_philo(argv);
+	return (check + check2 + check3);
 }

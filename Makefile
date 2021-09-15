@@ -6,7 +6,7 @@
 #    By: tomartin <tomartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/04 19:11:19 by tomartin          #+#    #+#              #
-#    Updated: 2021/09/15 09:39:30 by tomartin         ###   ########.fr        #
+#    Updated: 2021/09/15 10:55:15 by tomartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,8 @@ OBJ_DIR = ./obj/
 INC_DIR = ./includes/
 
 # Source files and object files
-SRC_FILES = main.c check.c utils.c time.c init.c rutine.c paint.c\
-			rutine2.c
+SRC_FILES = main.c check.c utils.c time.c init.c rutine.c paint.c \
+			rutine2.c rutine3.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 

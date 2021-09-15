@@ -1,42 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   rutine3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/05 19:19:02 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/15 11:20:02 by tomartin         ###   ########.fr       */
+/*   Created: 2021/09/15 10:47:23 by tomartin          #+#    #+#             */
+/*   Updated: 2021/09/15 10:56:23 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_atoi(char *str)
+void	start_odd(t_table *table)
 {
-	int			i;
-	int			neg;
-	long long	resp;
+	int	i;
 
 	i = 0;
-	resp = 0;
-	neg = 1;
-	while (str[i] == ' ' || (9 <= str[i] && str[i] <= 13))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	while (i < table->n_philos)
 	{
-		if (str[i] == '-')
-			neg = -1;
-		i++;
+		pthread_create(&table->philo[i].thread,
+			NULL, rutine, &table->philo[i]);
+		i += 2;
+		usleep(210 - table->n_philos);
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+}
+
+void	start_even(t_table *table)
+{
+	int	i;
+
+	i = 1;
+	while (i < table->n_philos)
 	{
-		resp = resp * 10 + str[i] - '0';
-		i++;
-		if ((resp * neg) > INT_MAX)
-			return (-1);
-		if ((resp * neg) < INT_MIN)
-			return (0);
+		pthread_create(&table->philo[i].thread,
+			NULL, rutine, &table->philo[i]);
+		i += 2;
+		usleep(210 - table->n_philos);
 	}
-	return (resp * neg);
 }
