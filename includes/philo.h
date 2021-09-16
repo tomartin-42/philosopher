@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/05 15:44:17 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/15 11:19:58 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/16 07:40:44 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ typedef struct s_philo {
 	int				ph_name;
 	bool			live;
 	int				fork[2];
-	char			lass_acc;
 	uint64_t		t_lastacc;
 	int				n_eat;
 	struct s_table	*table;

@@ -6,7 +6,7 @@
 /*   By: tommy <tommy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:00:32 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/15 16:04:22 by tommy            ###   ########.fr       */
+/*   Updated: 2021/09/16 07:39:40 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	*(rutine(void *arg))
 	while (aux_p->table->banquet)
 	{
 		eat_rutine(aux_p);
-		if(aux_p->n_eat == 0 || aux_p->live == DEATH || aux_p->table->banquet == false)
+		if (aux_p->n_eat == 0 || aux_p->live == DEATH
+			|| aux_p->table->banquet == false)
 			break ;
 		sleep_rutine(aux_p);
 		think_rutine(aux_p);
@@ -59,7 +60,6 @@ void	eat_rutine(t_philo *philo)
 	get_fork1(philo);
 	pthread_mutex_lock(philo->p_mutex);
 	get_fork2(philo);
-	philo->lass_acc = 'E';
 	philo->t_lastacc = get_t(philo->table->str_time);
 	philo->n_eat -= 1;
 	paint("is eating 🍗 🍖 🦴", philo);
@@ -72,17 +72,14 @@ void	eat_rutine(t_philo *philo)
 
 void	sleep_rutine(t_philo *philo)
 {
-	philo->lass_acc = 'S';
 	paint("is sleeping 🌙 🛏  🛌", philo);
 	pause_t(philo->table->t_dream, philo);
-	if(philo->table->t_dream == 0)
+	if (philo->table->t_dream == 0)
 		pause_t(1, philo);
-
 }
 
 void	think_rutine(t_philo *philo)
 {
-	philo->lass_acc = 'T';
 	paint("is thinking 🤯 🤦🏻‍♂️ 🙅🏻‍♂️", philo);
 	pause_t(1, philo);
 }

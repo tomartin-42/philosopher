@@ -6,7 +6,7 @@
 /*   By: tomartin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:21:19 by tomartin          #+#    #+#             */
-/*   Updated: 2021/09/15 12:15:40 by tomartin         ###   ########.fr       */
+/*   Updated: 2021/09/16 07:40:05 by tomartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	check_live(t_philo *philo)
 			if (aux_p.table->banquet)
 			{
 				aux_p.table->banquet = false;
-				printf("[%8lu] %d died 💀 ☠️  👻\n", ac_t, philo->ph_name);
+				printf("[%8llu] %d died 💀 ☠️  👻\n", ac_t, philo->ph_name);
 			}
 		}
 		i++;
@@ -44,8 +44,7 @@ void	paint(char *str, t_philo *philo)
 	if (philo->table->banquet)
 	{
 		pthread_mutex_lock(&philo->mutex2);
-		//if(check_n_eats(philo))
-			printf("[%8lu] %d %s\n", ac_t, philo->ph_name, str);
+		printf("[%8llu] %d %s\n", ac_t, philo->ph_name, str);
 		pthread_mutex_unlock(&philo->mutex2);
 	}
 }
